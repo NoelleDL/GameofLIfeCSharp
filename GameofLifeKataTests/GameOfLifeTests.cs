@@ -52,5 +52,14 @@ namespace GameofLifeKataTests
             CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
             Assert.Equal(CellState.Alive, newState);
         }
+
+        [Fact]
+        public void DeadCellWith_2LiveNeighbors_RemainsDead()
+        {
+            var currentState = CellState.Dead;
+            var liveNeighbors = 2;
+            CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
+            Assert.Equal(CellState.Dead, newState);
+        }
     }
 }
