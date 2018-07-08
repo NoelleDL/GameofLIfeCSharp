@@ -16,19 +16,19 @@ namespace GameofLifeKata
     {
         public static CellState GetNewState(CellState currentState, int liveNeighbors)
         {
-            if (liveNeighbors < 2 && currentState == CellState.Alive)
+            switch (currentState)
             {
-                currentState = CellState.Dead; 
-            }
-            else if (liveNeighbors > 3 && currentState == CellState.Alive)
-            {
-                currentState = CellState.Dead;
-            }
-            else if (liveNeighbors == 3 && currentState == CellState.Dead)
-            {
-                currentState = CellState.Alive;
-            }
-                
+                case CellState.Alive:
+                    if (liveNeighbors < 2 || liveNeighbors > 3)
+                        currentState = CellState.Dead;
+                    break; 
+                case CellState.Dead:
+                    if (liveNeighbors == 3)
+                        currentState = CellState.Alive;
+                    break; 
+                default:
+                    break;
+            }              
             return currentState; 
         }
     }
