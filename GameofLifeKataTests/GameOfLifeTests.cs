@@ -11,13 +11,24 @@ namespace GameofLifeKataTests
 {
     public class GameOfLifeTests
     {
-        [Fact]
-        public void LiveCellFewerThan2NeighborsDies()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        public void LiveCellFewerThan2NeighborsDies(int liveNeighbors)
         {
             var currentState = CellState.Alive;
-            var liveNeighbors = 1;
             CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
             Assert.Equal(CellState.Dead, newState);
+        }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void LiveCellWith_2Or3Neighbors_Dies(int liveNeighbors)
+        {
+            var currentState = CellState.Alive;
+            CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
+            Assert.Equal(CellState.Alive, newState);
         }
     }
 }
