@@ -20,6 +20,10 @@ namespace GameofLifeKata
             {
                 currentState = CellState.Dead; 
             }
+            else if (liveNeighbors > 3 && currentState == CellState.Alive)
+            {
+                currentState = CellState.Dead;
+            }
             return currentState; 
         }
     }

@@ -30,5 +30,18 @@ namespace GameofLifeKataTests
             CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
             Assert.Equal(CellState.Alive, newState);
         }
+
+        [Theory]
+        [InlineData(4)]
+        [InlineData(5)]
+        [InlineData(6)]
+        [InlineData(7)]
+        [InlineData(8)]
+        public void LiveCellWith_MoreThan3Neighbors_Dies(int liveNeighbors)
+        {
+            var currentState = CellState.Alive;
+            CellState newState = GameOfLife.GetNewState(currentState, liveNeighbors);
+            Assert.Equal(CellState.Dead, newState);
+        }
     }
 }
